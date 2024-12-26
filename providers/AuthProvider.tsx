@@ -73,6 +73,35 @@ export default function AuthProvider({ children }: PropsWithChildren) {
     }
   };
 
+  const fetchProfileAndLogs = async (userId: string) => {
+    try {
+      const { data: profileData, error: profileError } = await supabase
+        .from("profiles")
+        .select("*")
+        .eq("id", userId)
+        .single();
+
+      if (profileError) {
+        console.error("Error fetching profile:", profileError.message);
+      } else {
+        setProfile(profileData || null);
+      }
+
+      const { data: logs, error: logsError } = await supabase
+        .from("medication_logs")
+        .select("*")
+        .eq("user_id", userId);
+
+      if (logsError) {
+        console.error("Error fetching medication logs:", logsError.message);
+      } else {
+        setMedicationLogs(logs || []);
+      }
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
   useEffect(() => {
     const fetchSession = async () => {
       const {
@@ -81,24 +110,7 @@ export default function AuthProvider({ children }: PropsWithChildren) {
       setSession(session);
 
       if (session) {
-        // fetch profile
-        const { data } = await supabase
-          .from("profiles")
-          .select("*")
-          .eq("id", session.user.id)
-          .single();
-        setProfile(data || null);
-
-        const { data: logs, error: logsError } = await supabase
-          .from("medication_logs")
-          .select("*")
-          .eq("user_id", session.user.id);
-
-        if (logsError) {
-          console.error("Error fetching medication logs:", logsError);
-        } else {
-          setMedicationLogs(logs || []);
-        }
+        await fetchProfileAndLogs(session.user.id);
       }
       setLoading(false);
     };

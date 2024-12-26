@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { View, Text } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import Button from "@components/Button";
 import RNPickerSelect from "react-native-picker-select";
 import { useAuth } from "@providers/AuthProvider";
@@ -61,51 +61,63 @@ function MedicationSchedule() {
       </Text>
       {editMode ? (
         <View className="flex flex-col">
-          <RNPickerSelect
-            onValueChange={(value) => handleTimeChange(value, "morning")}
-            items={[
-              { label: "6 - 7", value: "6 - 7" },
-              { label: "7 - 8", value: "7 - 8" },
-              { label: "8 - 9", value: "8 - 9" },
-              { label: "9 - 10", value: "9 - 10" },
-              { label: "10 - 11", value: "10 - 11" },
-              { label: "11 - 12", value: "11 - 12" },
-            ]}
-            value={tempTimes.morning.join(" - ")}
-          />
-          <RNPickerSelect
-            onValueChange={(value) => handleTimeChange(value, "noon")}
-            items={[
-              { label: "12 - 13", value: "12 - 13" },
-              { label: "13 - 14", value: "13 - 14" },
-              { label: "14 - 15", value: "14 - 15" },
-              { label: "15 - 16", value: "15 - 16" },
-              { label: "16 - 17", value: "16 - 17" },
-            ]}
-            value={tempTimes.noon.join(" - ")}
-          />
-          <RNPickerSelect
-            onValueChange={(value) => handleTimeChange(value, "night")}
-            items={[
-              { label: "17 - 18", value: "17 - 18" },
-              { label: "18 - 19", value: "18 - 19" },
-              { label: "19 - 20", value: "19 - 20" },
-              { label: "20 - 21", value: "20 - 21" },
-              { label: "21 - 22", value: "21 - 22" },
-            ]}
-            value={tempTimes.night.join(" - ")}
-          />
+          <View className="flex-1 flex-row items-center ml-1">
+            <Text className="text-lg">Morning:</Text>
+            <RNPickerSelect
+              onValueChange={(value) => handleTimeChange(value, "morning")}
+              items={[
+                { label: "6 - 7", value: "6 - 7" },
+                { label: "7 - 8", value: "7 - 8" },
+                { label: "8 - 9", value: "8 - 9" },
+                { label: "9 - 10", value: "9 - 10" },
+                { label: "10 - 11", value: "10 - 11" },
+                { label: "11 - 12", value: "11 - 12" },
+              ]}
+              value={tempTimes.morning.join(" - ")}
+              style={RNPickerSelectStyles}
+            />
+          </View>
+          <View className="flex-1 flex-row items-center ml-1">
+            <Text className="text-lg">Noon:</Text>
+            <RNPickerSelect
+              onValueChange={(value) => handleTimeChange(value, "noon")}
+              items={[
+                { label: "12 - 13", value: "12 - 13" },
+                { label: "13 - 14", value: "13 - 14" },
+                { label: "14 - 15", value: "14 - 15" },
+                { label: "15 - 16", value: "15 - 16" },
+                { label: "16 - 17", value: "16 - 17" },
+              ]}
+              value={tempTimes.noon.join(" - ")}
+              style={RNPickerSelectStyles}
+            />
+          </View>
+          <View className="flex-1 flex-row items-center ml-1">
+            <Text className="text-lg">Night:</Text>
+            <RNPickerSelect
+              onValueChange={(value) => handleTimeChange(value, "night")}
+              items={[
+                { label: "17 - 18", value: "17 - 18" },
+                { label: "18 - 19", value: "18 - 19" },
+                { label: "19 - 20", value: "19 - 20" },
+                { label: "20 - 21", value: "20 - 21" },
+                { label: "21 - 22", value: "21 - 22" },
+              ]}
+              value={tempTimes.night.join(" - ")}
+              style={RNPickerSelectStyles}
+            />
+          </View>
           <View className="flex flex-row-reverse gap-3 mt-4">
             <Button
               text={loading ? "Saving..." : "Save"}
               onPress={handleSave}
               disabled={loading}
-              className="w-4/12 bg-green-500 text-white py-2 rounded-lg"
+              className="w-5/12 bg-green-500 text-white py-2 rounded-lg"
             />
             <Button
               text="Cancel"
               onPress={handleCancel}
-              className="w-4/12 bg-red-500 text-white py-2 rounded-lg"
+              className="w-5/12 bg-red-500 text-white py-2 rounded-lg"
             />
           </View>
         </View>
@@ -130,5 +142,16 @@ function MedicationSchedule() {
     </View>
   );
 }
+
+const RNPickerSelectStyles = StyleSheet.create({
+  inputIOS: {
+    fontSize: 16,
+    paddingVertical: 5,
+    paddingHorizontal: 5,
+    borderWidth: 1,
+    borderColor: "white",
+    borderRadius: 4,
+  },
+});
 
 export default MedicationSchedule;

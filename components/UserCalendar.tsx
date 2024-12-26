@@ -78,7 +78,7 @@ const UserCalendar = () => {
           activeOpacity={1}
           onPressOut={() => setIsModalVisible(false)}
         >
-          <View className="w-11/12 bg-white rounded-lg p-5 shadow-lg">
+          <View className="w-6/12 sm:w-6/12 md:w-6/12 lg:w-4/12 xl:w-4/12 bg-white rounded-lg p-5 shadow-lg">
             <Text className="text-xl font-bold mb-3 text-center">
               Medication Records for {selectedDate}
             </Text>
@@ -100,7 +100,7 @@ const UserCalendar = () => {
                 )}
               />
             ) : (
-              <Text className="text-lg text-center mb-1">
+              <Text className="text-lg text-center mb-6 mt-4">
                 No data available
               </Text>
             )}

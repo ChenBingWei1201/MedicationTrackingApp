@@ -10,31 +10,11 @@ function SignUpScreen() {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const defaultAvatarUrl = "https://example.com/default-avatar.png";
-
-  const adjectives = ["Brave", "Clever", "Witty", "Happy", "Bold"];
-  const nouns = ["Lion", "Tiger", "Bear", "Eagle", "Shark"];
-
-  const generateRandomUsername = () => {
-    const randomAdjective =
-      adjectives[Math.floor(Math.random() * adjectives.length)];
-    const randomNoun = nouns[Math.floor(Math.random() * nouns.length)];
-    const randomNumber = Math.floor(Math.random() * 1000);
-    return `${randomAdjective}${randomNoun}${randomNumber}`;
-  };
-
   const signUpWithEmail = async () => {
     setLoading(true);
-    const fullName = generateRandomUsername();
     const { error } = await supabase.auth.signUp({
       email,
       password,
-      options: {
-        data: {
-          full_name: fullName,
-          avatar_url: defaultAvatarUrl,
-        },
-      },
     });
     if (error) {
       Alert.alert("Error: ", error.message);
