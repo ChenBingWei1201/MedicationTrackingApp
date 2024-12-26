@@ -69,18 +69,17 @@ function MedicationSchedule() {
               { label: "8 - 9", value: "8 - 9" },
               { label: "9 - 10", value: "9 - 10" },
               { label: "10 - 11", value: "10 - 11" },
-              { label: "11 - 12", value: "11 - 12" },
             ]}
             value={tempTimes.morning.join(" - ")}
           />
           <RNPickerSelect
             onValueChange={(value) => handleTimeChange(value, "noon")}
             items={[
+              { label: "11 - 12", value: "11 - 12" },
               { label: "12 - 13", value: "12 - 13" },
               { label: "13 - 14", value: "13 - 14" },
               { label: "14 - 15", value: "14 - 15" },
               { label: "15 - 16", value: "15 - 16" },
-              { label: "16 - 17", value: "16 - 17" },
             ]}
             value={tempTimes.noon.join(" - ")}
           />
