@@ -7,7 +7,6 @@ import { useEffect } from "react";
 import "react-native-reanimated";
 import "../globals.css";
 import AuthProvider from "@providers/AuthProvider";
-import QueryProvider from "@providers/QueryProvider";
 import { NotificationProvider } from "@providers/NotificationProvider";
 import * as Notifications from "expo-notifications";
 
@@ -71,16 +70,14 @@ function RootLayoutNav() {
     <ThemeProvider value={DefaultTheme}>
       <AuthProvider>
         <NotificationProvider>
-          <QueryProvider>
-            <Stack>
-              <Stack.Screen name="(auth)" options={{ headerShown: false }} />
-              <Stack.Screen name="(user)" options={{ headerShown: false }} />
-              <Stack.Screen
-                name="notification"
-                options={{ presentation: "modal", title: "Notifications" }}
-              />
-            </Stack>
-          </QueryProvider>
+          <Stack>
+            <Stack.Screen name="(auth)" options={{ headerShown: false }} />
+            <Stack.Screen name="(user)" options={{ headerShown: false }} />
+            <Stack.Screen
+              name="notification"
+              options={{ presentation: "modal", title: "Notifications" }}
+            />
+          </Stack>
         </NotificationProvider>
       </AuthProvider>
     </ThemeProvider>

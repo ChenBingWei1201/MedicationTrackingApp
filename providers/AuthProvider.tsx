@@ -46,7 +46,7 @@ export default function AuthProvider({ children }: PropsWithChildren) {
         .single();
 
       if (error) {
-        console.error("Error updating timestamps:", error);
+        Alert.alert("Error updating timestamps:", error.message);
       } else {
         setProfile(data || null);
       }
@@ -82,7 +82,7 @@ export default function AuthProvider({ children }: PropsWithChildren) {
         .single();
 
       if (profileError) {
-        console.error("Error fetching profile:", profileError.message);
+        Alert.alert("Error fetching profile:", profileError.message);
       } else {
         setProfile(profileData || null);
       }
@@ -93,12 +93,12 @@ export default function AuthProvider({ children }: PropsWithChildren) {
         .eq("user_id", userId);
 
       if (logsError) {
-        console.error("Error fetching medication logs:", logsError.message);
+        Alert.alert("Error fetching medication logs:", logsError.message);
       } else {
         setMedicationLogs(logs || []);
       }
     } catch (error) {
-      console.error("Error fetching data:", error);
+      Alert.alert("Error fetching data:", error as string);
     }
   };
 

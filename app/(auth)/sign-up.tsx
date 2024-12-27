@@ -16,11 +16,7 @@ function SignUpScreen() {
       email,
       password,
     });
-    if (error) {
-      Alert.alert("Error: ", error.message);
-    } else {
-      console.log("User signed up successfully"); // Debugging: Confirm successful signup
-    }
+    if (error) Alert.alert("Error: ", error.message);
     setLoading(false);
   };
 
