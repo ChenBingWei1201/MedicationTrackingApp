@@ -17,10 +17,6 @@ ffmpeg -f v4l2 -i /dev/video0 -vcodec libx264 -preset ultrafast -tune zerolatenc
 
 _Tip:_ Use `hostname -I` to find the Rpi's IP address and replace `<Rpi's IP address>` in the command.
 
-### PC
-
-Update the IP address in `app.py` from `'rtmp://192.168.127.199/live/stream'` to `0`.
-
 ## Run
 
 ### Set Environment Variables
@@ -32,16 +28,21 @@ cp .env.example .env
 Edit `.env` with your credentials:
 
 ```bash
+RTMP_URL="rtmp://<Rpi's IP address>/live/stream"
 SUPABASE_URL=<your_supabase_url>
 SUPABASE_KEY=<your_supabase_key>
 EMAIL=<your_email>
 PASSWORD=<your_password>
 ```
 
+- Rpi: remember to replace `<Rpi's IP address>` with the actual IP address of the Raspberry Pi.
+- PC: set `RTMP_URL` to `0`.
+
 ### Execute the Application
 
 Run the application with:
 
 ```bash
+# MedicationTrackingApp/mediapipe
 python3 ./app.py
 ```

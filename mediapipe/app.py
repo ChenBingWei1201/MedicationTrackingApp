@@ -8,6 +8,7 @@ from supabase import create_client, Client
 
 # Load environment variables
 load_dotenv()
+rtmp_url = os.getenv("RTMP_URL")
 url = os.getenv("SUPABASE_URL")
 key = os.getenv("SUPABASE_KEY")
 email = os.getenv("EMAIL")
@@ -171,14 +172,15 @@ def start_detect(user_id: str, timestamps: list):
     mp_drawing = mp.solutions.drawing_utils
 
     set_timestamps(timestamps)
-    # cap = cv2.VideoCapture(0)
-    cap = cv2.VideoCapture('rtmp://192.168.127.199/live/stream')
+
+    cap = cv2.VideoCapture(rtmp_url)
+
     with mp_hands.Hands(min_detection_confidence=0.5, min_tracking_confidence=0.5) as hands:
         while cap.isOpened():
             try:
                 # Update time
                 now = datetime.now(tz=timezone(timedelta(hours=8)))
-                sec = now.second
+                sec = now.second # demo: now.second, real: now.hour
 
                 if sec == 0:
                     counter = 0
@@ -253,14 +255,6 @@ def start_detect(user_id: str, timestamps: list):
 
                 # Display image
                 cv2.imshow("MediaPipe Hand Detection", image)
-
-                # if cv2.waitKey(5) & 0xFF == 114:  # Press 'r' key (lowercase) to modify time # Ignore this for now
-                #     set_time_med(path_r)
-                #     lines = 'Time Modified ' + str(now) + '\n'
-                #     f.writelines(lines)
-                #     Op = False
-                # elif cv2.waitKey(5) & 0xFF == 27:  # Press ESC key to exit
-                #     break
 
                 if cv2.waitKey(5) & 0xFF == 27:
                     break
