@@ -109,7 +109,7 @@ it will open the app in ios simulator
 
 ### 5. Running the MediaPipe Model to track the user's medication intake
 
-read the `README.md` in the `mediapipe` folder
+read the [README.md](./mediapipe/README.md) in the `mediapipe` folder
 
 ## <a name="reference">🚀 Reference</a>
 

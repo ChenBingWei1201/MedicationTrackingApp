@@ -1,4 +1,4 @@
-# Medication Tracking System - Mediapipe
+# Medication Tracking System - MediaPipe
 
 ## Requirements
 
