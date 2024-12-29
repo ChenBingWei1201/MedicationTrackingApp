@@ -2,7 +2,7 @@
 
 ![License](https://img.shields.io/badge/license-MIT-blue)
 
-We use MediaPipe to track the user's medication intake with Pi cam and store the data into Supabase. We also build this app with React Native Expo Router to display the user's medication history and remind the user to take their medication between the time intervals they set. Feel free to give us a star (❁´◡`❁). Your support is our energy to create better projects! [Live demo](https://drive.google.com/drive/folders/16iHki0Dm4yHXm4xOsHz8CBZsnXuHVqFX?usp=sharing)
+This is the final project of Electrical Engineering Lab (Networking and Multimedia) in NTUEE. We use MediaPipe to track the user's medication intake with Pi cam and store the data into Supabase. We also build this app with React Native Expo Router to display the user's medication history and remind the user to take their medication between the time intervals he/she sets. Feel free to give us a star (❁´◡`❁). Your support is our energy to create better projects! [Live demo](https://drive.google.com/drive/folders/16iHki0Dm4yHXm4xOsHz8CBZsnXuHVqFX?usp=sharing)
 
 ## 📋 <a name="table">Table of Contents</a>
 
