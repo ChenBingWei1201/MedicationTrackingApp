@@ -3,9 +3,11 @@ import { View, Text } from "react-native";
 import Button from "@components/Button";
 import RNPickerSelect from "react-native-picker-select";
 import { useAuth } from "@providers/AuthProvider";
+import { useUpdateUserTimestamps } from "@api/profiles";
 
 function MedicationSchedule() {
-  const { profile, updateTimestamps } = useAuth();
+  const { profile, setProfile } = useAuth();
+  const { mutate: updateUserTimestamps } = useUpdateUserTimestamps();
   const [times, setTimes] = useState({
     morning: [] as string[],
     noon: [] as string[],
@@ -44,9 +46,20 @@ function MedicationSchedule() {
       ...tempTimes.noon,
       ...tempTimes.night,
     ];
-    updateTimestamps(allTimes);
-    setEditMode(false);
-    setLoading(false);
+    updateUserTimestamps(
+      { id: profile?.id, timestamps: allTimes },
+      {
+        onSuccess: (updatedProfile) => {
+          setProfile(updatedProfile);
+          setEditMode(false);
+          setLoading(false);
+        },
+        onError: (error) => {
+          console.error("Error updating timestamps:", error);
+          setLoading(false);
+        },
+      },
+    );
   };
 
   const handleCancel = () => {

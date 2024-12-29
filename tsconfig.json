@@ -4,11 +4,12 @@
     "strict": true,
     "paths": {
       "@/*": ["./*"],
-      "@components/*": ["./components/*"],
+      "@api/*": ["./api/*"],
       "@assets/*": ["./assets/*"],
+      "@components/*": ["./components/*"],
       "@constants/*": ["./constants/*"],
-      "@providers/*": ["./providers/*"],
       "@lib/*": ["./lib/*"],
+      "@providers/*": ["./providers/*"],
       "@shared/*": ["./shared/*"]
     }
   },

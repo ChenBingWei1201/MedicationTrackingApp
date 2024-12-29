@@ -1,13 +1,11 @@
-import { Text, View, FlatList, Pressable } from "react-native";
-import { useNotifications } from "@providers/NotificationProvider";
-import { supabase } from "@lib/supabase";
+import { Text, View, FlatList } from "react-native";
+import { useUser } from "@providers/UserProvider";
+import Notification from "@components/Notification";
+import { useUpdateNotification } from "@api/notifications";
 
 function NotificationScreen() {
-  const { notifications } = useNotifications();
-
-  const updateRead = async (id: string) => {
-    await supabase.from("notifications").update({ read: true }).eq("id", id);
-  };
+  const { notifications } = useUser();
+  const { mutate: updateNotification } = useUpdateNotification();
 
   return (
     <View className="flex-1 p-4">
@@ -15,30 +13,11 @@ function NotificationScreen() {
         data={notifications}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
-          <Pressable
-            onPress={async () => {
-              if (!item.read) {
-                await updateRead(item.id);
-              }
-            }}
-          >
-            <View
-              className={`bg-white p-4 m-2 rounded-lg ${
-                item.read ? "" : "shadow-md shadow-black"
-              }`}
-            >
-              <Text className="text-xl font-bold">{item.message}</Text>
-              <Text className="text-sm text-gray-500">
-                {new Date(item.created_at).toLocaleString(undefined, {
-                  hour12: false,
-                })}
-              </Text>
-            </View>
-          </Pressable>
+          <Notification item={item} updateNotification={updateNotification} />
         )}
         ListEmptyComponent={() => (
           <Text className="text-2xl text-center text-gray-500">
-            No Notifications Found
+            No Notifications
           </Text>
         )}
       />

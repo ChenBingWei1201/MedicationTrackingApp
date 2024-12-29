@@ -4,9 +4,11 @@ import Button from "@components/Button";
 import { supabase } from "@lib/supabase";
 import { useAuth } from "@providers/AuthProvider";
 import { Redirect } from "expo-router";
+import { useUpdateUserProfile } from "@api/profiles";
 
 function UserProfile() {
-  const { profile, updateUserProfile } = useAuth();
+  const { profile, setProfile } = useAuth();
+  const { mutate: updateUserProfile } = useUpdateUserProfile();
   const [editMode, setEditMode] = useState(false);
   const [fullName, setFullName] = useState("");
   const [avatarUrl, setAvatarUrl] = useState("");
@@ -19,11 +21,26 @@ function UserProfile() {
     }
   }, [profile]);
 
-  const handleSave = async () => {
+  const handleSave = () => {
     setLoading(true);
-    updateUserProfile({ fullName, avatarUrl });
-    setEditMode(false);
-    setLoading(false);
+    updateUserProfile(
+      {
+        id: profile.id,
+        fullName,
+        avatarUrl,
+      },
+      {
+        onSuccess: (updatedProfile) => {
+          setProfile(updatedProfile);
+          setEditMode(false);
+          setLoading(false);
+        },
+        onError: (error) => {
+          console.error("Error updating profile:", error);
+          setLoading(false);
+        },
+      },
+    );
   };
 
   const handleCancel = () => {

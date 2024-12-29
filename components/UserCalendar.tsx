@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { View, Text, Modal, TouchableOpacity, FlatList } from "react-native";
 import { Calendar } from "react-native-calendars";
-import { useAuth } from "@providers/AuthProvider";
+import { useUser } from "@providers/UserProvider";
 import type { CalendarDay } from "@/shared/types";
 
 const UserCalendar = () => {
-  const { medicationLogs } = useAuth();
+  const { medicationLogs } = useUser();
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
   const [isModalVisible, setIsModalVisible] = useState(false);
 

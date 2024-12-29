@@ -2,7 +2,7 @@
 
 ![License](https://img.shields.io/badge/license-MIT-blue)
 
-This app uses MediaPipe to track the user's medication intake and store the data into Supabase. We also build an app with React Native Expo Router to display the user's medication history and remind the user to take their medication between the time intervals they set. Feel free to give us a star (❁´◡`❁). Your support is our energy to create better projects! [Live demo](https://drive.google.com/drive/folders/16iHki0Dm4yHXm4xOsHz8CBZsnXuHVqFX?usp=sharing)
+We use MediaPipe to track the user's medication intake with Pi cam and store the data into Supabase. We also build this app with React Native Expo Router to display the user's medication history and remind the user to take their medication between the time intervals they set. Feel free to give us a star (❁´◡`❁). Your support is our energy to create better projects! [Live demo](https://drive.google.com/drive/folders/16iHki0Dm4yHXm4xOsHz8CBZsnXuHVqFX?usp=sharing)
 
 ## 📋 <a name="table">Table of Contents</a>
 
@@ -17,20 +17,31 @@ This app uses MediaPipe to track the user's medication intake and store the data
 ### Our Idea
 
 #### Flow
+
 ![flow](/assets/images/flow.png)
 
-#### App Interface
-![app](/assets/images/app.png)
-
 #### Medication-taking posture not triggered
+
 ![no](/assets/images/no.png)
 
 #### Successfully triggered the medicine-taking posture
+
 ![yes](/assets/images/yes.png)
+
+#### Schema
+
+![schema](/assets/images/schema.png)
+
+#### App Interface
+
+![app](/assets/images/app.png)
+
+
 
 ## <a name="tech-stack">⚙️ Tech Stack</a>
 
 - React Native Expo
+- Tanstack Query
 - TypeScript
 - Tailwind CSS/Nativewind
 - Supabase
@@ -93,18 +104,23 @@ EXPO_PUBLIC_SUPABASE_ANON_KEY=
 Replace the placeholder values with your actual Supabase credentials. You can obtain these credentials by signing up on the [Supabase](https://supabase.com/dashboard/projects) website.
 
 ### 4. Running the app
+
 - Android (android studio must be installed)
+
 ```bash
 # MedicationTrackingApp
 pnpm android
 ```
+
 it will open the app in android emulator
 
 - iOS (xcode must be installed)
+
 ```bash
 # MedicationTrackingApp
 pnpm ios
 ```
+
 it will open the app in ios simulator
 
 ### 5. Running the MediaPipe Model to track the user's medication intake
@@ -113,8 +129,9 @@ read the [README.md](./mediapipe/README.md) in the `mediapipe` folder
 
 ## <a name="reference">🚀 Reference</a>
 
-- [MediaPipe](https://ai.google.dev/edge/mediapipe/solutions/vision/gesture_recognizer/python)
 - [Expo](https://docs.expo.dev/get-started/create-a-project/)
+- [React Native Full 8 Hours Course (Expo, Expo Router, Supabase)](https://youtu.be/rIYzLhkG9TA?feature=shared)
+- [Tanstack Query](https://tanstack.com/query/latest/docs/framework/react/overview)
 - [Supabase](https://supabase.com/docs/guides/getting-started/tutorials/with-expo-react-native)
 - [Nativewind](https://www.nativewind.dev/getting-started/expo-router)
-- [React Native Full 8 Hours Course (Expo, Expo Router, Supabase)](https://youtu.be/rIYzLhkG9TA?feature=shared)
+- [MediaPipe](https://ai.google.dev/edge/mediapipe/solutions/vision/gesture_recognizer/python)
