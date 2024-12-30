@@ -15,6 +15,12 @@ function SignUpScreen() {
     const { error } = await supabase.auth.signUp({
       email,
       password,
+      options: {
+        data: {
+          full_name: "New User",
+          avatar_url: "https://http.cat/200",
+        },
+      },
     });
     if (error) Alert.alert("Error: ", error.message);
     setLoading(false);

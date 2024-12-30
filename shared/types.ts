@@ -1,4 +1,3 @@
-
 import type { Session } from "@supabase/supabase-js";
 
 export type AuthData = {
@@ -6,7 +5,7 @@ export type AuthData = {
   profile: any;
   loading: boolean;
   isAdmin: boolean;
-  setProfile: (profile: Profile) => void;
+  setProfile: (profile: Profile | null) => void;
 };
 
 export type Profile = {

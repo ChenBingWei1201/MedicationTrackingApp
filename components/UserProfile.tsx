@@ -3,7 +3,6 @@ import { View, Text, TextInput, Image } from "react-native";
 import Button from "@components/Button";
 import { supabase } from "@lib/supabase";
 import { useAuth } from "@providers/AuthProvider";
-import { Redirect } from "expo-router";
 import { useUpdateUserProfile } from "@api/profiles";
 
 function UserProfile() {
@@ -51,7 +50,6 @@ function UserProfile() {
 
   const handleSignOut = async () => {
     await supabase.auth.signOut();
-    return <Redirect href="/(auth)/sign-in" />;
   };
 
   return (

@@ -36,8 +36,6 @@ This is the final project of Electrical Engineering Lab (Networking and Multimed
 
 ![app](/assets/images/app.png)
 
-
-
 ## <a name="tech-stack">⚙️ Tech Stack</a>
 
 - React Native Expo
